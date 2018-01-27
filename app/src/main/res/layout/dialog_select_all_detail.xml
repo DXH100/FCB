@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="30dp"
+              android:layout_marginTop="@dimen/title_height"
+              android:background="@color/color_txt_white"
+              android:orientation="vertical">
+
+<TextView
+    android:id="@+id/tv_7day"
+    android:layout_width="wrap_content"
+    style="@style/text_normal"
+    android:textSize="15sp"
+    android:text="7天内奖励"
+    android:padding="10dp"
+    android:textColor="@color/color_txt_333"
+    android:layout_height="wrap_content"/>
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/line_color"
+        android:layout_height="@dimen/line_height"/>
+    <TextView
+        android:id="@+id/tv_all"
+        android:layout_width="wrap_content"
+        style="@style/text_normal"
+        android:textSize="15sp"
+        android:text="全部奖励"
+        android:padding="10dp"
+        android:textColor="@color/color_txt_333"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

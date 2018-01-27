@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:background="@color/color_txt_white"
+              android:layout_height="match_parent">
+    <TextView
+        style="@style/text_normal"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:text="全部奖励"
+        android:textColor="@color/color_txt_666"
+        android:layout_gravity="center"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/tv_total_amount"
+        style="@style/text_normal"
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
+        android:text="2000"
+        android:textColor="@color/red_filter_txt"
+        android:layout_gravity="center"
+        android:textSize="30sp"/>
+
+</LinearLayout>
