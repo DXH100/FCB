@@ -26,7 +26,7 @@
     <color name="color_txt_888">#888888</color>
     <color name="color_txt_666">#666666</color>
     <color name="color_hint_et">#C2C2C8</color>
-    <color name="color_grey_a2">#A2A2A2</color>
+    <color name="color_grey_a2">#e7d9da</color>
     <color name="color_red_normal">#FA5D5D</color>
     <color name="color_green_normal">#66C266</color>
     <color name="color_yellow_normal">#FFA12A</color>
@@ -64,4 +64,5 @@
     <color name="red_filter_txt">#f43531</color>
     <color name="gray_btn">#F0F2F5</color>
     <color name="receive_text">#575C61</color>
+    <color name="red">#CA2525</color>
 </resources>

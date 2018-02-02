@@ -25,6 +25,7 @@ import com.blankj.utilcode.util.ScreenUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -754,7 +755,15 @@ protected BaseBean parseJson(String resJsonString, Gson gson) {
 //            resultBean = ResultBean.fromJson(resJsonString, entityClass);
     BaseBean baseBean = new BaseBean();
     JsonParser parser = new JsonParser();
-    JsonObject jsonObject = parser.parse(resJsonString).getAsJsonObject();
+    JsonObject jsonObject = null;
+    try {
+        jsonObject = parser.parse(resJsonString).getAsJsonObject();
+    } catch (JsonSyntaxException e) {
+        e.printStackTrace();
+        showErrToast("网络错误");
+        return null;
+
+    }
     String code = null;
     try {
         code = jsonObject.get("code").getAsString();

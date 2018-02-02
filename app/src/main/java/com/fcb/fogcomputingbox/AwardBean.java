@@ -41,6 +41,11 @@ public class AwardBean implements Parcelable {
         public DailysBean() {
         }
 
+        public DailysBean(String dailyDate, String dailyReward) {
+            this.dailyDate = dailyDate;
+            this.dailyReward = dailyReward;
+        }
+
         protected DailysBean(Parcel in) {
             this.dailyDate = in.readString();
             this.dailyReward = in.readString();

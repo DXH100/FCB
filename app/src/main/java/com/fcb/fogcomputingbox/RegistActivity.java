@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -24,6 +23,8 @@ import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import service.LocalService;
+import service.RemoteService;
 
 /**
  * author: denghx
@@ -38,12 +39,13 @@ public class RegistActivity extends BaseActivity {
     EditText mEtCode;
     @BindView(R.id.tv_regist)
     TextView mTvRegist;
-    @BindView(R.id.iv_back)
-    ImageView mIvBack;
     @BindView(R.id.tv_title)
     TextView mTvTitle;
     @BindView(R.id.layout_title)
     RelativeLayout mLayoutTitle;
+    private String mAddress;
+    private String code;
+    private String address;
 
     @Override
     public int doSetContentView() {
@@ -54,60 +56,80 @@ public class RegistActivity extends BaseActivity {
     public void initData() {
         StatusBarUtil.immersive(this);
         StatusBarUtil.setPaddingSmart(this, mLayoutTitle);
-    }
 
+        mAddress = SPUtils.getInstance().getString("address");
+        LogUtils.e(mAddress);
+        if (!TextUtils.isEmpty(mAddress)){
+            requestAward(mAddress);
+        }else {
+            doDismissNetProgress();
+        }
+    }
+    private void initService() {
+        startService(new Intent(this, LocalService.class));
+        startService(new Intent(this, RemoteService.class));
+    }
     @OnClick({R.id.tv_regist})
     public void onViewClick(View view) {
 
         switch (view.getId()) {
             case R.id.tv_regist:
-                if (TextUtils.isEmpty(mEtAddress.getText().toString().trim())) {
-                    showErrToast("钱包地址不能为空");
-                    return;
-                }
-                if (TextUtils.isEmpty(mEtCode.getText().toString().trim())) {
-                    showErrToast("注册码不能为空");
-                    return;
-                }
-                doShowNetProgress();
-                final OkHttpClient client = new OkHttpClient.Builder()
-                        .connectTimeout(Constants.TIMEOUT, TimeUnit.SECONDS)
-                        .readTimeout(Constants.TIMEOUT, TimeUnit.SECONDS)
-                        .addInterceptor(getLogInterceptor())
-                        .build();
-
-                FormBody.Builder builder = new FormBody.Builder();
-                builder.add("address", mEtAddress.getText().toString().trim());
-                builder.add("registerCode", mEtCode.getText().toString().trim());
-//                builder.add("deviceId", DateHelper.getYYMMdd(System.currentTimeMillis() - (1000 * 60 * 60 * 24 * 7)));
-                LogUtils.e(MacUtils.getAdresseMAC(this));
-                builder.add("macAddress", MacUtils.getAdresseMAC(this));
-                FormBody body = builder.build();
-                final Request request = new Request.Builder()
-                        .url("http://39.107.96.160:8080/api/register")
-                        .post(body)
-                        .build();
-
-                client.newCall(request).enqueue(new Callback() {
-                    @Override
-                    public void onFailure(Call call, IOException e) {
-                        doDismissNetProgress();
-                        showErrToast("网络连接失败");
-                    }
-
-                    @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                        doDismissNetProgress();
-                        Gson gson = new Gson();
-                        BaseBean baseBean = parseJson(response.body().string(), gson);
-                        LogUtils.e(baseBean.toString());
-                        if (baseBean.code.equalsIgnoreCase("E000000")) {
-                            requestAward(mEtAddress.getText().toString().trim());
-                        } else {
-                            showErrToast(baseBean.msg);
-                        }
-                    }
-                });
+                startActivity(LookAwardActivity.class);
+//                if (TextUtils.isEmpty(mEtAddress.getText().toString().trim())) {
+//                    showErrToast("钱包地址不能为空");
+//                    return;
+//                }
+//                if (TextUtils.isEmpty(mEtCode.getText().toString().trim())) {
+//                    showErrToast("注册码不能为空");
+//                    return;
+//                }
+//                doShowNetProgress();
+//                final OkHttpClient client = new OkHttpClient.Builder()
+//                        .connectTimeout(Constants.TIMEOUT, TimeUnit.SECONDS)
+//                        .readTimeout(Constants.TIMEOUT, TimeUnit.SECONDS)
+//                        .addInterceptor(getLogInterceptor())
+//                        .build();
+//
+//                FormBody.Builder builder = new FormBody.Builder();
+//                address = mEtAddress.getText().toString().trim();
+//                builder.add("address", address);
+//                code = mEtCode.getText().toString().trim();
+//                builder.add("registerCode", code);
+////                builder.add("deviceId", DateHelper.getYYMMdd(System.currentTimeMillis() - (1000 * 60 * 60 * 24 * 7)));
+//                LogUtils.e(MacUtils.getAdresseMAC(this));
+//                builder.add("macAddress", MacUtils.getAdresseMAC(this));
+//                FormBody body = builder.build();
+//                final Request request = new Request.Builder()
+//                        .url(Constants.BaseUrl+"/api/register")
+//                        .post(body)
+//                        .build();
+//
+//                client.newCall(request).enqueue(new Callback() {
+//                    @Override
+//                    public void onFailure(Call call, IOException e) {
+//                        doDismissNetProgress();
+//                        showErrToast("网络连接失败");
+//                    }
+//
+//                    @Override
+//                    public void onResponse(Call call, Response response) throws IOException {
+//                        doDismissNetProgress();
+//                        Gson gson = new Gson();
+//                        BaseBean baseBean = parseJson(response.body().string(), gson);
+//                        if (baseBean==null){
+//                            showErrToast("网络错误");
+//                            return;
+//                        }
+//                        LogUtils.e(baseBean.toString());
+//                        if (baseBean.code.equalsIgnoreCase("E000000")) {
+//                            requestAward(mEtAddress.getText().toString().trim());
+//                            SPUtils.getInstance().put("address", address);
+//                            SPUtils.getInstance().put("code", code);
+//                        } else {
+//                            showErrToast(baseBean.msg);
+//                        }
+//                    }
+//                });
 
 
                 break;
@@ -132,7 +154,7 @@ public class RegistActivity extends BaseActivity {
         builder.add("address", address);
         FormBody body = builder.build();
         final Request request = new Request.Builder()
-                .url("http://39.107.96.160:8080/api/getReward")
+                .url(Constants.BaseUrl+"/api/getReward")
                 .post(body)
                 .build();
 
@@ -149,6 +171,10 @@ public class RegistActivity extends BaseActivity {
                 Gson gson = new Gson();
                 BaseBean baseBean = parseJson(response.body().string(), gson);
 //                BaseBean baseBean = gson.fromJson(response.body().string(), BaseBean.class);
+                if (baseBean==null){
+                    showErrToast("网络错误");
+                    return;
+                }
                 LogUtils.e(baseBean);
                 if (TextUtils.equals(baseBean.code,"E000000")) {
 
@@ -156,7 +182,9 @@ public class RegistActivity extends BaseActivity {
                     Intent intent = new Intent(RegistActivity.this, LookAwardActivity.class);
                     intent.putExtra(LookAwardActivity.DATA, awardBean);
                     startActivity(intent);
-                    SPUtils.getInstance().put("address", address);
+
+
+                    initService();
                     finish();
                 } else {
                     showErrToast(baseBean.msg);

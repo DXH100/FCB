@@ -9,7 +9,6 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.v4.app.NotificationCompat;
-import android.widget.Toast;
 
 import com.fcb.fogcomputingbox.LogUtils;
 import com.hejunlin.tvsample.service.IMyAidlInterface;
@@ -41,11 +40,9 @@ public class RemoteService extends Service {
         
         PendingIntent contentIntent = PendingIntent.getService(this, 0, intent, 0);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-        builder.setTicker("XXX")
+        builder
         .setContentIntent(contentIntent)
-        .setContentTitle("我是XXX，我怕谁!")
         .setAutoCancel(true)
-        .setContentText("哈哈")
         .setWhen( System.currentTimeMillis());
         
         //把service设置为前台运行，避免手机系统自动杀掉改服务。
@@ -74,7 +71,6 @@ public class RemoteService extends Service {
         @Override
         public void onServiceDisconnected(ComponentName name) {
            LogUtils.e("LocalService服务被干掉了~~~~断开连接！");
-            Toast.makeText(RemoteService.this, "断开连接", Toast.LENGTH_SHORT).show();
             //启动被干掉的
             RemoteService.this.startService(new Intent(RemoteService.this, LocalService.class));
             RemoteService.this.bindService(new Intent(RemoteService.this, LocalService.class), conn, Context.BIND_IMPORTANT);

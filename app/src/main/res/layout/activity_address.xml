@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:background="@color/background"
+              android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_height"
+        android:background="@color/red"
+        >
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/selector_img_press"
+            android:clickable="true"
+            android:scaleType="center"
+            android:src="@drawable/icon_back"
+            />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="我的地址"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/txt_size_17"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="15dp"
+        android:textSize="@dimen/txt_size_18"
+        android:textColor="@color/color_txt_666"
+        android:text="地址"
+        />
+
+    <TextView
+        android:id="@+id/tv_address"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="left|center_vertical"
+        android:background="@color/color_txt_white"
+        android:paddingLeft="15dp"
+        android:textSize="@dimen/txt_size_23"
+        android:textColor="@color/color_txt_333"
+        android:text="dfdsetrertdfdsetrertdfdsetrertdfdsetrert"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="15dp"
+        android:textSize="@dimen/txt_size_18"
+        android:textColor="@color/color_txt_666"
+        android:text="注册码"
+        />
+
+    <TextView
+        android:id="@+id/tv_code"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="left|center_vertical"
+        android:background="@color/color_txt_white"
+        android:paddingLeft="15dp"
+        android:textSize="@dimen/txt_size_23"
+        android:textColor="@color/color_txt_333"
+        android:text="156875"
+        />
+
+</LinearLayout>

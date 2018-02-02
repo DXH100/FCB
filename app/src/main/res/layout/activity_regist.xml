@@ -7,18 +7,8 @@
         android:id="@+id/layout_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/title_height"
-        android:background="@drawable/shape_me_title_bg"
+        android:background="@color/red"
         >
-
-        <ImageView
-            android:id="@+id/iv_back"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:background="@drawable/selector_img_press"
-            android:clickable="true"
-            android:scaleType="center"
-            android:src="@drawable/icon_back"
-            />
 
         <TextView
             android:id="@+id/tv_title"
@@ -26,7 +16,7 @@
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:gravity="center"
-            android:text="奖励查询"
+            android:text="注册"
             android:textColor="@color/color_white"
             android:textSize="@dimen/txt_size_17"/>
 
@@ -75,7 +65,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/shape_blue_btn"
+        android:background="@color/red"
         android:paddingBottom="7dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
