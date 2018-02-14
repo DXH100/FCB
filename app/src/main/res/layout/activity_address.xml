@@ -47,7 +47,7 @@
     <TextView
         android:id="@+id/tv_address"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:gravity="left|center_vertical"
         android:background="@color/color_txt_white"
         android:paddingLeft="15dp"
@@ -69,7 +69,7 @@
     <TextView
         android:id="@+id/tv_code"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:gravity="left|center_vertical"
         android:background="@color/color_txt_white"
         android:paddingLeft="15dp"

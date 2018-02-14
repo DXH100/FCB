@@ -64,5 +64,6 @@
     <color name="red_filter_txt">#f43531</color>
     <color name="gray_btn">#F0F2F5</color>
     <color name="receive_text">#575C61</color>
+    <color name="viewfinder_line_color">#545f67</color>
     <color name="red">#CA2525</color>
 </resources>

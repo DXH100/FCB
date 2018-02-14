@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">FogComputingBox</string>
     <string name="no_active">暂无数据</string>
+    <string name="scan_qr_code">扫描二维码</string>
+    <string name="scan_help">请将二维码放在扫描框内</string>
+    <string name="error_qrcode">不识别的二维码</string>
+    <string name="auth_err">开启权限失败</string>
 </resources>

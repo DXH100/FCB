@@ -13,10 +13,13 @@ import android.support.v4.app.NotificationCompat;
 import android.telephony.TelephonyManager;
 
 import com.blankj.utilcode.util.SPUtils;
+import com.fcb.fogcomputingbox.BaseActivity;
+import com.fcb.fogcomputingbox.BaseBean;
 import com.fcb.fogcomputingbox.Constants;
 import com.fcb.fogcomputingbox.LogUtils;
 import com.fcb.fogcomputingbox.MacUtils;
 import com.fcb.fogcomputingbox.StateBean;
+import com.google.gson.Gson;
 import com.hejunlin.tvsample.service.IMyAidlInterface;
 
 import org.greenrobot.eventbus.EventBus;
@@ -50,27 +53,20 @@ public class LocalService extends Service {
             binder = new MyBinder();
         }
         conn = new MyServiceConnection();
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                LogUtils.e(11111);
-//            }
-//        },500);
         new Thread(new Runnable() {
             @Override
             public void run() {
                 while (true) {
-                    SystemClock.sleep(1000 * 60 * 10);
-//                    SystemClock.sleep(1000);
-                    requestAward();
+                    SystemClock.sleep(Constants.INTERVAL);
+                    startRequest();
                 }
 
             }
         }).start();
     }
 
-    private void requestAward() {
-        LogUtils.e("requestAward");
+    private void startRequest() {
+        LogUtils.e("startRequest");
         final OkHttpClient client = new OkHttpClient.Builder()
                 .connectTimeout(Constants.TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(Constants.TIMEOUT, TimeUnit.SECONDS)
@@ -78,14 +74,9 @@ public class LocalService extends Service {
 
         FormBody.Builder builder = new FormBody.Builder();
         TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-//        String deviceId = tm.getDeviceId();
-//        LogUtils.e(deviceId);
         LogUtils.e(MacUtils.getAdresseMAC(this));
         builder.add("address", SPUtils.getInstance().getString("address"));
-//        builder.add("deviceId",deviceId);
         builder.add("macAddress", MacUtils.getAdresseMAC(this));
-//        builder.add("startDate",DateHelper.getYYMMdd(time));
-//        builder.add("endDate",DateHelper.getYYMMdd(time1));
 
         FormBody body = builder.build();
         Request request = new Request.Builder()
@@ -97,13 +88,19 @@ public class LocalService extends Service {
             @Override
             public void onFailure(Call call, IOException e) {
                 EventBus.getDefault().post(new StateBean(false));
-                LogUtils.e(222);
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                LogUtils.e(11111);
-                EventBus.getDefault().post(new StateBean(true));
+                BaseBean baseBean = BaseActivity.parseJson(response.body()
+                                                                   .string(), new Gson());
+                LogUtils.e(baseBean.toString());
+                if (baseBean!=null&&baseBean.code.equalsIgnoreCase("E000000")){
+                    EventBus.getDefault().post(new StateBean(true));
+                }else {
+                    EventBus.getDefault().post(new StateBean(false));
+                }
+
             }
         });
     }

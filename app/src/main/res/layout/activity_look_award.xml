@@ -11,15 +11,15 @@
         android:background="@color/red"
         >
 
-        <ImageView
-            android:id="@+id/iv_back"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:background="@drawable/selector_img_press"
-            android:clickable="true"
-            android:scaleType="center"
-            android:src="@drawable/icon_back"
-            />
+        <!--<ImageView-->
+            <!--android:id="@+id/iv_back"-->
+            <!--android:layout_width="40dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="@drawable/selector_img_press"-->
+            <!--android:clickable="true"-->
+            <!--android:scaleType="center"-->
+            <!--android:src="@drawable/icon_back"-->
+            <!--/>-->
 
         <TextView
             android:id="@+id/tv_title"

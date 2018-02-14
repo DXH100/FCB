@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Handler;
 
 import com.blankj.utilcode.util.Utils;
+import com.tencent.bugly.Bugly;
 
 
 /**
@@ -27,6 +28,7 @@ public class AppClass extends Application {
         instance = this;
         Utils.init(this);
 
+        Bugly.init(this,"f58d8ebc3e",false);
 //        if (Constants.DEBUG_TOGGLE) {
 //        if (true) {
 //        LogCrashHandler.getInstance().init(this);

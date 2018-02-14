@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+    <ImageView
+        android:id="@+id/tv_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="19dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/icon_back"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        style="@style/text_normal"
+        android:layout_alignTop="@+id/tv_close"
+        android:layout_centerHorizontal="true"
+        android:text="@string/scan_qr_code"
+        android:textColor="@color/color_txt_white"
+        android:textSize="@dimen/txt_size_17"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="130dp"
+        android:text="LP2"
+        android:textColor="@color/color_txt_white"
+        android:textSize="@dimen/txt_size_20"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="80dp"
+        android:gravity="center"
+        android:text="@string/scan_help"
+        android:textColor="@color/color_txt_white"
+        android:textSize="@dimen/txt_size_18"/>
+    <!--<RelativeLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_marginTop="75dp">-->
+
+    <!--<CheckBox-->
+    <!--android:id="@+id/rb_light"-->
+    <!--android:layout_width="22dp"-->
+    <!--android:layout_height="22dp"-->
+    <!--android:button="@null"-->
+    <!--android:background="@drawable/selector_radio_light" />-->
+
+    <!--<ImageView-->
+    <!--android:id="@+id/qrcode_album"-->
+    <!--android:layout_width="22dp"-->
+    <!--android:layout_height="22dp"-->
+    <!--android:layout_marginLeft="100dp"-->
+    <!--android:layout_toRightOf="@id/rb_light"-->
+    <!--android:scaleType="fitXY"-->
+    <!--android:src="@mipmap/qrcode_album" />-->
+    <!--</RelativeLayout>-->
+
+</RelativeLayout>

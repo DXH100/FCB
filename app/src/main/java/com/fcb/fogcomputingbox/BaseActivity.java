@@ -426,11 +426,6 @@ public abstract class BaseActivity extends AppCompatActivity implements Constant
     }
 
 
-    public void startActivity(Class activityClass, String key, String value) {
-        HashMap<String, String> data = new HashMap<>();
-        data.put(key, value);
-        startActivity(data, activityClass);
-    }
 
     public void startActivity(HashMap<String, String> data, Class activityClass) {
         Intent intent = new Intent(this, activityClass);
@@ -747,7 +742,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Constant
 //        startActivityForResult(intent01,
 //                Constants.FROM_GALLERY_REQUEST);
 //    }
-protected BaseBean parseJson(String resJsonString, Gson gson) {
+public static BaseBean parseJson(String resJsonString, Gson gson) {
     //在基类里面统一的完成json解析S
     //type-->就是BaseProtocol子类中定义的具体类型
 //    BaseBean resultBean = new BaseBean();
@@ -760,7 +755,6 @@ protected BaseBean parseJson(String resJsonString, Gson gson) {
         jsonObject = parser.parse(resJsonString).getAsJsonObject();
     } catch (JsonSyntaxException e) {
         e.printStackTrace();
-        showErrToast("网络错误");
         return null;
 
     }

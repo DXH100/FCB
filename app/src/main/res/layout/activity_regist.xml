@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
     <RelativeLayout
         android:id="@+id/layout_title"
         android:layout_width="match_parent"
@@ -20,26 +21,32 @@
             android:textColor="@color/color_white"
             android:textSize="@dimen/txt_size_17"/>
 
-
-
-
-
-    </RelativeLayout>
-        <EditText
-            android:id="@+id/et_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+        <ImageView
+            android:id="@+id/iv_scan"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
             android:layout_marginRight="15dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/edit_radius"
-            android:hint="请输入钱包地址"
-            android:paddingBottom="7dp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingTop="7dp"
-            android:textColor="@color/txt_color_black"
-            android:textSize="@dimen/txt_size_20"/>
+            android:src="@drawable/scan"/>
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/et_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/edit_radius"
+        android:hint="请输入钱包地址"
+        android:paddingBottom="7dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="7dp"
+        android:textColor="@color/txt_color_black"
+        android:textSize="@dimen/txt_size_20"/>
+
     <EditText
         android:id="@+id/et_code"
         android:layout_width="match_parent"
